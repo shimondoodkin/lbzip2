@@ -210,7 +210,7 @@ dump_info(void)
          "\n\t" "size(reord_q): %2u {%6u}"
          "\n\t" "size(order_q): %2u {%6u}"
          "\n\t" "size(unord_q): %2u {%6u}",
-         eof, parsing_done,
+         lbzip2_eof, parsing_done,
          parse_token,
          work_units, num_worker,
          out_slots, total_out_slots,
@@ -248,7 +248,7 @@ can_attach(struct detached_bitstream bs)
   /* No one should try to attach a block that has already been released. */
   assert(bs.offset >= head_offs);
 
-  return bs.offset < tail_offs || (eof && bs.offset == tail_offs);
+  return bs.offset < tail_offs || (lbzip2_eof && bs.offset == tail_offs);
 }
 
 static struct bitstream
@@ -268,7 +268,7 @@ attach(struct detached_bitstream dbs)
   bs.eof = dbs.eof;
 
   if (dbs.offset == tail_offs) {
-    assert(eof);
+    assert(lbzip2_eof);
 
     bs.block = NULL;
     bs.data = NULL;
@@ -819,7 +819,7 @@ do_scan(void)
 static bool
 can_terminate(void)
 {
-  return (eof && parsing_done && parse_token
+  return (lbzip2_eof && parsing_done && parse_token
           && work_units == num_worker
           && out_slots == total_out_slots);
 }
