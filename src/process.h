@@ -207,3 +207,5 @@ void xwrite(const void *vbuf, size_t size);
    by priority queue macros. */
 void up_heap(void *root, unsigned size);
 void down_heap(void *root, unsigned size);
+
+#endif // LBZIP2_PROCESS_H
