@@ -22,7 +22,12 @@
 #include "common.h"
 #include "encode.h"
 
-#include <arpa/inet.h>          /* htonl() */
+#if defined(_WIN32) || defined(WIN32) || defined(__CYGWIN__)
+#include <winsock2.h>          /* ntohl() */	
+#else
+#include <arpa/inet.h>          /* ntohl() */	
+#endif
+
 #include <string.h>             /* memset() */
 
 
