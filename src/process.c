@@ -227,7 +227,7 @@ static pthread_cond_t  sched_cond   = PTHREAD_COND_INITIALIZER;
 
 static const struct process *process;
 
-bool eof;
+bool lbzip2_eof;
 unsigned work_units;
 unsigned in_slots;
 unsigned out_slots;
@@ -300,7 +300,7 @@ source_thread_proc(void)
   }
 
   sched_lock();
-  eof = 1;
+  lbzip2_eof = 1;
   sched_unlock();
 
   Trace(("    source: terminating"));
@@ -519,7 +519,7 @@ primary_thread(void)
 
   thread_id = 0;
 
-  eof = false;
+  lbzip2_eof = false;
   in_slots = total_in_slots;
   out_slots = total_out_slots;
   work_units = num_worker;
@@ -539,7 +539,7 @@ primary_thread(void)
   uninit_io();
   process->uninit();
 
-  assert(eof);
+  assert(lbzip2_eof);
   assert(in_slots == total_in_slots);
   assert(out_slots == total_out_slots);
   assert(work_units == num_worker);
@@ -573,7 +573,7 @@ copy_on_write_complete(void *buffer)
 static bool
 copy_terminate(void)
 {
-  if (eof && out_slots == total_out_slots)
+  if (lbzip2_eof && out_slots == total_out_slots)
     xraise(SIGUSR2);
 
   return false;
@@ -593,7 +593,7 @@ copy(void)
     copy_on_write_complete,
   };
 
-  eof = false;
+  lbzip2_eof = false;
   in_slots = 2;
   out_slots = 2;
   total_out_slots = 2;
