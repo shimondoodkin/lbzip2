@@ -1,0 +1,27 @@
+I had installed https://msys2.github.io/
+
+# examples:
+pacman -Ss gcc ## search something, see package name in (parenthasis)
+pacman -S mingw-w64-x86_64-toolchain  # install package
+
+# so i had typed:
+
+#update system:
+
+pacman --needed -S bash pacman pacman-mirrors msys2-runtime
+pacman -Suu
+pacman -Sy pacman #update package manager
+pacman -Syu # update system, close console
+pacman -Syu # update system again
+pacman -Su  # update system again
+
+# install dev packages
+
+pacman -S base-devel
+pacman -S mingw-w64-x86_64-toolchain
+
+
+cd "C:\Users\user\Downloads\lbzip2-2.5\lbzip2-2.5"
+ls
+./configure
+make
