@@ -76,7 +76,7 @@ struct position {
   }
 
 
-extern bool eof;                   /* true iff end of input was reached */
+extern bool lbzip2_eof;                   /* true iff end of input was reached */
 extern unsigned work_units;        /* number of available work units */
 extern unsigned in_slots;          /* number of available input slots */
 extern unsigned out_slots;         /* number of available output slots */
