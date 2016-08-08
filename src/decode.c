@@ -20,7 +20,13 @@
 */
 
 #include "common.h"
-#include <arpa/inet.h>          /* ntohl() */
+
+#if defined(_WIN32) || defined(WIN32) || defined(__CYGWIN__)
+#include <winsock2.h>          /* ntohl() */	
+#else
+#include <arpa/inet.h>          /* ntohl() */	
+#endif
+
 #include <string.h>             /* memcpy() */
 
 #include "decode.h"
