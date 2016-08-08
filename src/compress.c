@@ -121,7 +121,7 @@ static bool
 can_collect_seq(void)
 {
   return ultra && collect_token &&
-    (!empty(coll_q) || (eof && unfinished_work != NULL)) &&
+    (!empty(coll_q) || (lbzip2_eof && unfinished_work != NULL)) &&
     (work_units > 0 || unfinished_work != NULL);
 }
 
@@ -252,7 +252,7 @@ do_reorder(void)
 static bool
 can_terminate(void)
 {
-  return eof && empty(coll_q) &&
+  return lbzip2_eof && empty(coll_q) &&
       work_units == num_worker && out_slots == total_out_slots;
 }
 
