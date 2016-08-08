@@ -1,5 +1,7 @@
 I had installed https://msys2.github.io/
 
+had to execute it manualy , the cmd file is now an exe, and the links in the start menu are invalid.
+
 # examples:
 pacman -Ss gcc ## search something, see package name in (parenthasis)
 pacman -S mingw-w64-x86_64-toolchain  # install package
