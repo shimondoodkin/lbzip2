@@ -19,6 +19,9 @@
   along with lbzip2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef LBZIP2_PROCESS_H
+#define LBZIP2_PROCESS_H
+
 
 #include "xalloc.h"             /* xmalloc() */
 
